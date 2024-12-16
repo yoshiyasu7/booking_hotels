@@ -1,0 +1,8 @@
+fastapi
+# asyncpg
+aiosqlite
+pydantic
+uvicorn
+SQLAlchemy
+# python-multipart
+websockets
