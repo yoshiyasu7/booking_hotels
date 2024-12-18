@@ -19,6 +19,10 @@ class HotelResponse(BaseModel):
         orm_mode = True
 
 
+class HotelId(BaseModel):
+    id: int
+
+
 class BookingCreate(BaseModel):
     hotel_id: int
     guest_name: str
@@ -30,6 +34,10 @@ class BookingResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class BookingId(BaseModel):
+    id: int
 
 
 class MessageResponse(BaseModel):

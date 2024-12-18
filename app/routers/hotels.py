@@ -1,11 +1,9 @@
 from typing import List
 
 from fastapi import APIRouter, Depends
-from sqlalchemy import select
 
-from app.main import lifespan #?
-from app.models import HotelORM
-from app.schemas import HotelResponse, HotelCreate
+from app.schemas import HotelResponse, HotelCreate, MessageResponse
+
 
 router = APIRouter(
     prefix="/hotels",
@@ -13,14 +11,17 @@ router = APIRouter(
 )
 
 @router.post("/", response_model=HotelResponse)
-async def create_hotel(hotel_data: HotelCreate, db: Depends(lifespan)):
-    hotel = HotelORM(**hotel_data.model_dump())
-    db.add(hotel)
-    await db.commit()
-    await db.refresh(hotel)
-    return hotel
+async def create_hotel(hotel_data: HotelCreate, db: Depends()):
+    pass
 
 @router.get("/", response_model=List[HotelResponse])
-async def read_hotels(db: Depends(lifespan)):
-    result = await db.execute(select(HotelORM))
-    return result.scalars().all()
+async def read_hotels(db: Depends()):
+    pass
+
+@router.put("/{hotel_id}", response_model=MessageResponse)
+async def update_hotels(db: Depends()):
+    pass
+
+@router.delete("/{hotel_id}", response_model=MessageResponse)
+async def delete_hotels(db: Depends()):
+    pass
