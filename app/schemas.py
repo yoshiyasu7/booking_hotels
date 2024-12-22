@@ -15,12 +15,10 @@ class HotelResponse(BaseModel):
     price_per_night: float
     rooms_available: int
 
-    class Config:
-        orm_mode = True
-
 
 class HotelId(BaseModel):
-    id: int
+    ok: bool = True
+    hotel_id: int
 
 
 class BookingCreate(BaseModel):
@@ -32,12 +30,10 @@ class BookingResponse(BaseModel):
     id: int
     guest_name: str
 
-    class Config:
-        orm_mode = True
-
 
 class BookingId(BaseModel):
-    id: int
+    ok: bool = True
+    booking_id: int
 
 
 class MessageResponse(BaseModel):

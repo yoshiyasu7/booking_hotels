@@ -10,10 +10,10 @@ class HotelORM(Base):
     __tablename__ = "hotels"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(nullable=False)
-    location: Mapped[str] = mapped_column(nullable=False)
-    price_per_night: Mapped[float] = mapped_column(nullable=False)
-    rooms_available: Mapped[int] = mapped_column(nullable=False)
+    name: Mapped[str]
+    location: Mapped[str]
+    price_per_night: Mapped[float]
+    rooms_available: Mapped[int]
 
     bookings: Mapped[List["BookingORM"]] = relationship(back_populates="hotel")
 
@@ -22,9 +22,9 @@ class BookingORM(Base):
     __tablename__ = "bookings"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    hotel_id: Mapped[int] = mapped_column(ForeignKey("hotels.id"), nullable=False)
-    guest_name: Mapped[str] = mapped_column(nullable=False)
-    rooms_booked: Mapped[int] = mapped_column(nullable=False)
+    hotel_id: Mapped[int] = mapped_column(ForeignKey("hotels.id"))
+    guest_name: Mapped[str]
+    rooms_booked: Mapped[int]
 
     hotel: Mapped[HotelORM] = relationship(back_populates="bookings")
 

@@ -3,12 +3,12 @@ from sqlalchemy import select
 
 from app.database import new_session
 from app.models import BookingORM, HotelORM
-from app.schemas import BookingCreate, BookingResponse
+from app.schemas import BookingCreate, BookingResponse, BookingId
 
 
 class BookingsRepository:
-    @staticmethod
-    async def create_booking(cls, booking_data: BookingCreate) -> BookingORM:
+    @classmethod
+    async def create_booking(cls, booking_data: BookingCreate) -> int:
         async with new_session() as session:
             query = select(HotelORM).filter_by(id=booking_data.hotel_id)
             result = await session.execute(query)
@@ -25,18 +25,17 @@ class BookingsRepository:
             session.add(new_booking)
             await session.flush()
             await session.commit()
-            return new_booking
+            return new_booking.id
 
-    @staticmethod
+    @classmethod
     async def get_bookings(cls) -> list[BookingResponse]:
         async with new_session() as session:
             query = select(BookingORM)
             result = await session.execute(query)
             booking_models = result.scalars().all()
-            bookings = [BookingResponse.model_validate(booking_model) for booking_model in booking_models]
-            return bookings
+            return booking_models
 
-    @staticmethod
+    @classmethod
     async def cancel_booking(cls, booking_id: int) -> dict:
         async with new_session() as session:
             query = select(BookingORM).filter_by(id=booking_id)
