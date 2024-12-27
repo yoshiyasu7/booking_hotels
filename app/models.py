@@ -10,8 +10,9 @@ class HotelORM(Base):
     __tablename__ = "hotels"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str]
-    location: Mapped[str]
+    owner_name: Mapped[str]
+    hotel_name: Mapped[str]
+    hotel_location: Mapped[str]
     price_per_night: Mapped[float]
     rooms_available: Mapped[int]
 

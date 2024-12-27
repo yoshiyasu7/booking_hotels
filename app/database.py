@@ -1,9 +1,14 @@
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+import os
+
+from dotenv import load_dotenv, find_dotenv
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
+
+load_dotenv(find_dotenv())
 
 # создание асинхронного движка
 async_engine = create_async_engine(
-    "sqlite+aiosqlite:///hotels.db",
+    os.getenv('DATABASE_URL'),
     echo=True # вывод SQL-запросов для отладки
 )
 # создание асинхронной сессии

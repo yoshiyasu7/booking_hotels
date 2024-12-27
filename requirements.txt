@@ -1,8 +1,12 @@
-fastapi
-# asyncpg
-aiosqlite
+python-dotenv
+
+alembic
+psycopg[binary]
+sqlalchemy
+
 pydantic
 uvicorn
-SQLAlchemy
+fastapi
 # python-multipart
-websockets
+
+black
