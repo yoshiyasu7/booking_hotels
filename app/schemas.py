@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class UserId(BaseModel):
@@ -15,23 +15,22 @@ class UserCreate(BaseModel):
 class UserResponse(BaseModel):
     id: int
     username: str
-    email: str
+    email: EmailStr
 
 
 class HotelCreate(BaseModel):
-    name: str
-    location: str
-    owner: str
+    hotel_name: str
+    hotel_location: str
+    owner_id: int
     price_per_night: float
     rooms_available: int
 
 
 class HotelResponse(BaseModel):
     id: int
-    name: str
-    location: str
+    hotel_name: str
+    hotel_location: str
     owner_id: int
-    owner_name: str
     price_per_night: float
     rooms_available: int
 
@@ -43,6 +42,7 @@ class HotelId(BaseModel):
 
 class BookingCreate(BaseModel):
     hotel_id: int
+    user_id: int
     guest_name: str
     rooms_booked: int
 

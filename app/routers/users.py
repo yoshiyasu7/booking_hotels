@@ -1,7 +1,6 @@
-from typing import Annotated, List
+from fastapi import APIRouter
 
-from fastapi import APIRouter, Depends
-
+from app.database import SessionDependency
 from app.repository.users import UsersRepository
 from app.schemas import UserCreate, UserId
 
@@ -12,6 +11,6 @@ router = APIRouter(
 
 
 @router.post("/")
-async def create_user(user_data: Annotated[UserCreate, Depends()]) -> UserId:
-    user_id = await UsersRepository.create_user(user_data)
+async def create_user(user_data: UserCreate, session: SessionDependency) -> UserId:
+    user_id = await UsersRepository.create_user(user_data, session)
     return {"ok": True, "user_id": user_id}
