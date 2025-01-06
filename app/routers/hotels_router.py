@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from app.database import SessionDependency
-from app.repository.hotels import HotelsRepository
+from app.repository.hotels_repository import HotelsRepository
 from app.schemas import HotelResponse, HotelCreate, MessageResponse, HotelId
 
 router = APIRouter(

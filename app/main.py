@@ -2,9 +2,9 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app.routers.users import router as users_router
-from app.routers.hotels import router as hotels_router
-from app.routers.bookings import router as bookings_router
+from app.routers.users_router import router as users_router
+from app.routers.hotels_router import router as hotels_router
+from app.routers.bookings_router import router as bookings_router
 
 from .database import async_engine, Base
 

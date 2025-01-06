@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 
 class UserId(BaseModel):
@@ -6,10 +6,20 @@ class UserId(BaseModel):
     user_id: int
 
 
+class UserUpdate(BaseModel):
+    message: str
+    username: str
+    email: bytes
+
+
+class UserDelete(BaseModel):
+    message: str
+
+
 class UserCreate(BaseModel):
     username: str
-    email: str
-    password: str
+    email: str | bytes
+    password: str = Field(default=None, min_length=8)
 
 
 class UserResponse(BaseModel):

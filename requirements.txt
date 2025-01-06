@@ -1,4 +1,6 @@
 python-dotenv
+passlib
+cryptography
 
 alembic
 psycopg[binary]

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from app.database import SessionDependency
-from app.repository.bookings import BookingsRepository
+from app.repository.bookings_repository import BookingsRepository
 from app.schemas import BookingResponse, BookingCreate, MessageResponse, BookingId
 
 router = APIRouter(
